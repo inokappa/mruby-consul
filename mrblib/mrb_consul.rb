@@ -23,20 +23,20 @@ class Consul
   end
 
   #
-  # req_type: node / checks / service / state
+  # endpoint: node / checks / service / state
   # args: node / service / state
   #
-  def health(req_type, args={})
+  def health(endpoint, args={})
     url = "http://" + @host + ":" + @port + "/v1/health/" 
-    case req_type
+    case endpoint
     when "node" then
-      url = url + req_type + args[:node]
+      url = url + endpoint + "/" + args[:node]
     when "checks" then
-      url = url + req_type + args[:service]
+      url = url + endpoint + "/" + args[:service]
     when "service" then
-      url = url + req_type + args[:service]
+      url = url + endpoint + "/" + args[:service]
     when "state" then
-      url = url + req_type + args[:state]
+      url = url + endpoint + "/" + args[:state]
     else
       puts "Please set Request method(get or put or del)"
       exit 1
@@ -45,9 +45,23 @@ class Consul
   end
 
   #
-  # 
+  # endpoint: leader / peers
+  #
+  def status(endpoint)
+    url = "http://" + @host + ":" + @port + "/v1/status/" 
+    case endpoint
+    when "leader" then
+      url = url + endpoint + "/"
+    when "peers" then
+      url = url + endpoint + "/"
+    end
+    access("get", url)
+  end
+  #
+  # access
   #
   def access(req_method, url, args={})
+    puts url
     http = HttpRequest.new()
     case req_method
     when "get" then
