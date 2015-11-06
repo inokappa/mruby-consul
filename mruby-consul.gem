@@ -1,0 +1,6 @@
+name: mruby-consul
+description: Consul class
+author: Yohei Kawahara
+website: https://github.com/inokappa/mruby-consul
+protocol: git
+repository: https://github.com/inokappa/mruby-consul.git
