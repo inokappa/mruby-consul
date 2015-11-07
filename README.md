@@ -46,8 +46,8 @@ puts "state: #{health.state("any")['body']}"
 put: true
 get: [{"CreateIndex":523,"ModifyIndex":523,"LockIndex":0,"Key":"foo","Flags":0,"Value":"YmFy"}]
 delete: true
-leader: "10.0.2.15:8300"
-peers: ["10.0.2.15:8300"]
+leader: "10.0.2.xx:8300"
+peers: ["10.0.2.xx:8300"]
 node: [{"Node":"localhost","CheckID":"serfHealth","Name":"Serf Health Status","Status":"passing","Notes":"","Output":"Agent alive and reachable","ServiceID":"","ServiceName":""}]
 checks: []
 service: []
