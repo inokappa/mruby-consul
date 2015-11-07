@@ -11,7 +11,7 @@ RUN apt-get install -y \
     curl \
     automake \
     autoconf \
-    libtool \
+    libtool
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/mruby/mruby.git /usr/local/mruby
