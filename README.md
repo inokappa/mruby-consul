@@ -14,6 +14,14 @@ end
 
 ***
 
+## supported endpoint
+
+- [KV](https://www.consul.io/docs/agent/http/kv.html)
+- [Health Check](https://www.consul.io/docs/agent/http/health.html)
+- [Status](https://www.consul.io/docs/agent/http/status.html)
+
+***
+
 ## example
 
 ### code
