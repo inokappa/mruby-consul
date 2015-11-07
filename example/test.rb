@@ -3,19 +3,17 @@ config = {
   :port => "8500",
 }
 
-consul = Consul.new(config)
+kv = Consul::Kv.new(config)
+puts "put: #{kv.put("foo", "bar")['body']}"
+puts "get: #{kv.get("foo")['body']}"
+puts "delete: #{kv.del("foo")['body']}"
 
-# kv: https://www.consul.io/docs/agent/http/kv.html
-puts "put: #{consul.kv("put", :key => "foo", :value => "bar")['body']}"
-puts "get: #{consul.kv("get", :key => "foo")['body']}"
-puts "delete: #{consul.kv("del", :key => "foo")['body']}"
+status = Consul::Status.new(config)
+puts "leader: #{status.leader['body']}"
+puts "peers: #{status.peers['body']}"
 
-# health: http://www.consul.io/docs/agent/http/health.html 
-puts "node: #{consul.health("node", :node => "localhost")['body']}"
-puts "node: #{consul.health("checks", :service => "your_service")['body']}"
-puts "node: #{consul.health("service", :service => "your_service")['body']}"
-puts "node: #{consul.health("state", :state => "any")['body']}"
-
-# status: https://www.consul.io/docs/agent/http/status.html
-puts "status: #{consul.status("leader")['body']}"
-puts "peers: #{consul.status("peers")['body']}"
+health = Consul::Health.new(config)
+puts "node: #{health.node("localhost")['body']}"
+puts "checks: #{health.checks("your_service")['body']}"
+puts "service: #{health.service("your_service")['body']}"
+puts "state: #{health.state("any")['body']}"
