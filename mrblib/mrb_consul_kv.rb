@@ -2,9 +2,9 @@ class Consul
   class Kv
     def initialize(config)
       @host = config[:host]
-      @port = config[:port] 
+      @port = config[:port].to_s
       @url = "http://" + @host + ":" + @port + "/v1/kv/"
-      @http = HttpRequest.new()
+      @http = ::HttpRequest.new()
     end
     #
     # req_method: get / put / delete(del)
