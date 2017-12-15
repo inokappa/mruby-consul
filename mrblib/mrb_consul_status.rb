@@ -4,7 +4,7 @@ class Consul
       @host = config[:host]
       @port = config[:port]
       @url = "http://" + @host + ":" + @port + "/v1/status/"
-      @http = HttpRequest.new()
+      @http = ::HttpRequest.new()
     end
 
     def leader

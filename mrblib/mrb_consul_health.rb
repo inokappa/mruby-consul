@@ -4,7 +4,7 @@ class Consul
       @host = config[:host]
       @port = config[:port]
       @url = "http://" + @host + ":" + @port + "/v1/health/"
-      @http = HttpRequest.new()
+      @http = ::HttpRequest.new()
     end
     def node(node)
       @http.get(@url + "node/" + node)
