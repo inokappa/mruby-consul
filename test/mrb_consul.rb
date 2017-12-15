@@ -2,7 +2,7 @@
 ## Consul Test
 ##
 
-assert("Consul#kv") do
-  consul = Consul.new
-  assert_equal("hello", consul.kv)
+assert("Consul::Kv") do
+  consul = Consul::Kv.new(host: 'localhost', port: 8500)
+  assert_equal(Consul::Kv, consul.class)
 end
