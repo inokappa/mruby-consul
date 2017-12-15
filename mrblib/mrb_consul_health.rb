@@ -2,7 +2,7 @@ class Consul
   class Health
     def initialize(config)
       @host = config[:host]
-      @port = config[:port]
+      @port = config[:port].to_s
       @url = "http://" + @host + ":" + @port + "/v1/health/"
       @http = ::HttpRequest.new()
     end

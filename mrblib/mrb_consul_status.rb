@@ -2,7 +2,7 @@ class Consul
   class Status
     def initialize(config)
       @host = config[:host]
-      @port = config[:port]
+      @port = config[:port].to_s
       @url = "http://" + @host + ":" + @port + "/v1/status/"
       @http = ::HttpRequest.new()
     end

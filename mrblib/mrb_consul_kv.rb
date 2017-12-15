@@ -2,7 +2,7 @@ class Consul
   class Kv
     def initialize(config)
       @host = config[:host]
-      @port = config[:port]
+      @port = config[:port].to_s
       @url = "http://" + @host + ":" + @port + "/v1/kv/"
       @http = ::HttpRequest.new()
     end
