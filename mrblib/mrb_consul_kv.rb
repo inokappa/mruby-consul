@@ -3,6 +3,7 @@ class Consul
     def initialize(config)
       @host = config[:host]
       @port = config[:port].to_s
+      @disable_raw = config[:disable_raw]
       @url = "http://" + @host + ":" + @port + "/v1/kv/"
       @http = ::HttpRequest.new()
     end
@@ -11,7 +12,7 @@ class Consul
     # args: key / value
     #
     def get(key, args={})
-      @http.get(@url + key)
+      @http.get(make_url(key))
     end
 
     def put(key, value, args={})
@@ -20,6 +21,13 @@ class Consul
 
     def del(key, args={})
       @http.delete(@url + key)
+    end
+
+    private
+    def make_url(key)
+      ret = @url + key
+      ret << "?raw" unless @disable_raw
+      ret
     end
   end
 end
